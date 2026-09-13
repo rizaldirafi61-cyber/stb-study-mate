@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - STB StudyMate</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-container">
+
+        <div class="auth-brand">
+            <div class="auth-logo">STB</div>
+
+            <h1>STB StudyMate</h1>
+
+            <p>
+                Asisten perkuliahan pribadi mahasiswa
+                STIKOM Tunas Bangsa
+            </p>
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div class="auth-card" id="loginCard">
+
+            <div class="auth-header">
+                <h2>Selamat Datang 👋</h2>
+
+                <p>
+                    Login untuk melanjutkan ke dashboard.
+                </p>
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Masukkan email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Masukkan password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="loginButton"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <div id="loginMessage" class="auth-message"></div>
+
+
+            <p class="auth-switch">
+
+                Belum punya akun?
+
+                <button
+                    type="button"
+                    onclick="showRegister()"
+                >
+                    Daftar sekarang
+                </button>
+
+            </p>
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div
+            class="auth-card"
+            id="registerCard"
+            style="display: none;"
+        >
+
+            <div class="auth-header">
+
+                <h2>Buat Akun 🎓</h2>
+
+                <p>
+                    Buat akun untuk mulai mengatur perkuliahanmu.
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label>Nama Lengkap</label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Nama lengkap"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>NIM</label>
+
+                    <input
+                        type="text"
+                        id="registerNim"
+                        placeholder="Nomor Induk Mahasiswa"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Email aktif"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Minimal 6 karakter"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="registerButton"
+                >
+                    Buat Akun
+                </button>
+
+            </form>
+
+
+            <div id="registerMessage" class="auth-message"></div>
+
+
+            <p class="auth-switch">
+
+                Sudah punya akun?
+
+                <button
+                    type="button"
+                    onclick="showLogin()"
+                >
+                    Login
+                </button>
+
+            </p>
+
+        </div>
+
+
+        <a href="index.html" class="back-home">
+            ← Kembali ke halaman utama
+        </a>
+
+    </div>
+
+
+<script>
+
+    // ==========================================
+    // SUPABASE CONFIGURATION
+    // ==========================================
+
+    const SUPABASE_URL = "MASUKKAN_PROJECT_URL_DISINI";
+
+    const SUPABASE_KEY = "MASUKKAN_PUBLISHABLE_KEY_DISINI";
+
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+    // ==========================================
+    // SWITCH LOGIN / REGISTER
+    // ==========================================
+
+    function showRegister() {
+
+        document.getElementById("loginCard").style.display = "none";
+
+        document.getElementById("registerCard").style.display = "block";
+
+    }
+
+
+    function showLogin() {
+
+        document.getElementById("registerCard").style.display = "none";
+
+        document.getElementById("loginCard").style.display = "block";
+
+    }
+
+
+    // ==========================================
+    // REGISTER
+    // ==========================================
+
+    document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("registerName").value.trim();
+
+            const nim =
+                document.getElementById("registerNim").value.trim();
+
+            const email =
+                document.getElementById("registerEmail").value.trim();
+
+            const password =
+                document.getElementById("registerPassword").value;
+
+
+            const button =
+                document.getElementById("registerButton");
+
+            const message =
+                document.getElementById("registerMessage");
+
+
+            button.disabled = true;
+
+            button.textContent = "Membuat akun...";
+
+            message.className = "auth-message";
+
+            message.textContent = "";
+
+
+            try {
+
+                const { data, error } =
+                    await supabaseClient.auth.signUp({
+
+                        email: email,
+
+                        password: password,
+
+                        options: {
+
+                            data: {
+                                full_name: name,
+                                nim: nim
+                            }
+
+                        }
+
+                    });
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                if (!data.user) {
+                    throw new Error(
+                        "Akun belum berhasil dibuat."
+                    );
+                }
+
+
+                // Simpan profil mahasiswa
+
+                const { error: profileError } =
+                    await supabaseClient
+                        .from("profiles")
+                        .insert({
+
+                            id: data.user.id,
+
+                            full_name: name,
+
+                            nim: nim,
+
+                            university:
+                                "STIKOM Tunas Bangsa Pematangsiantar",
+
+                            study_program:
+                                "Teknik Informatika",
+
+                            current_semester: 1,
+
+                            email: email
+
+                        });
+
+
+                if (profileError) {
+                    console.error(profileError);
+                }
+
+
+                message.className =
+                    "auth-message success";
+
+                message.textContent =
+                    "Akun berhasil dibuat. Silakan login.";
+
+
+                document
+                    .getElementById("registerForm")
+                    .reset();
+
+
+                setTimeout(function() {
+
+                    showLogin();
+
+                }, 1500);
+
+
+            } catch (error) {
+
+                message.className =
+                    "auth-message error";
+
+                message.textContent =
+                    error.message || "Terjadi kesalahan.";
+
+            }
+
+
+            button.disabled = false;
+
+            button.textContent = "Buat Akun";
+
+        });
+
+
+    // ==========================================
+    // LOGIN
+    // ==========================================
+
+    document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById("loginEmail").value.trim();
+
+            const password =
+                document.getElementById("loginPassword").value;
+
+
+            const button =
+                document.getElementById("loginButton");
+
+            const message =
+                document.getElementById("loginMessage");
+
+
+            button.disabled = true;
+
+            button.textContent = "Login...";
+
+            message.className = "auth-message";
+
+            message.textContent = "";
+
+
+            try {
+
+                const { data, error } =
+                    await supabaseClient.auth.signInWithPassword({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                if (!data.session) {
+                    throw new Error(
+                        "Session login tidak ditemukan."
+                    );
+                }
+
+
+                message.className =
+                    "auth-message success";
+
+                message.textContent =
+                    "Login berhasil. Mengarahkan...";
+
+
+                setTimeout(function() {
+
+                    window.location.href = "dashboard.html";
+
+                }, 800);
+
+
+            } catch (error) {
+
+                message.className =
+                    "auth-message error";
+
+                message.textContent =
+                    error.message || "Login gagal.";
+
+            }
+
+
+            button.disabled = false;
+
+            button.textContent = "Login";
+
+        });
+
+</script>
+
+</body>
+</html>
