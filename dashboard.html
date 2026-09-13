@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - STB StudyMate</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="dashboard-navbar">
+
+        <div class="dashboard-brand">
+
+            <div class="dashboard-logo">
+                STB
+            </div>
+
+            <div>
+                <strong>STB StudyMate</strong>
+                <small>Personal College Assistant</small>
+            </div>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-info">
+                <strong id="userName">Mahasiswa</strong>
+                <span id="userStudy">Teknik Informatika</span>
+            </div>
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="dashboard-container">
+
+
+        <!-- WELCOME -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <p class="dashboard-label">
+                    DASHBOARD MAHASISWA
+                </p>
+
+                <h1>
+                    Selamat datang kembali,
+                    <span id="welcomeName">Mahasiswa</span> 👋
+                </h1>
+
+                <p>
+                    Mari atur perkuliahanmu dan capai target akademikmu.
+                </p>
+
+            </div>
+
+            <div class="semester-badge">
+
+                <span>Semester</span>
+
+                <strong id="semesterValue">
+                    1
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="dashboard-stats">
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <span>Mata Kuliah</span>
+
+                    <strong id="courseCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <span>Tugas Belum Selesai</span>
+
+                    <strong id="assignmentCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <span>Kuliah Hari Ini</span>
+
+                    <strong id="todayScheduleCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="dashboard-stat-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <span>Target IP</span>
+
+                    <strong id="targetIP">
+                        4.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN GRID -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- PRIORITY -->
+
+            <div class="dashboard-card priority-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <span>PRIORITAS</span>
+
+                        <h2>
+                            Apa yang harus saya lakukan?
+                        </h2>
+
+                    </div>
+
+                    <div class="card-heading-icon">
+                        🎯
+                    </div>
+
+                </div>
+
+
+                <div id="priorityList">
+
+                    <div class="dashboard-empty">
+
+                        <div>✨</div>
+
+                        <strong>
+                            Belum ada aktivitas
+                        </strong>
+
+                        <p>
+                            Tambahkan mata kuliah dan tugas
+                            untuk mendapatkan rekomendasi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TODAY -->
+
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <span>HARI INI</span>
+
+                        <h2>
+                            Agenda Saya
+                        </h2>
+
+                    </div>
+
+                    <div class="card-heading-icon">
+                        📅
+                    </div>
+
+                </div>
+
+
+                <div id="todayAgenda">
+
+                    <div class="dashboard-empty">
+
+                        <div>📚</div>
+
+                        <strong>
+                            Belum ada jadwal
+                        </strong>
+
+                        <p>
+                            Jadwal kuliah hari ini akan muncul di sini.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- QUICK ACTION -->
+
+        <section class="quick-section">
+
+            <div class="quick-heading">
+
+                <span>AKSES CEPAT</span>
+
+                <h2>
+                    Kelola Perkuliahan
+                </h2>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+                <button class="quick-card">
+
+                    <div>📚</div>
+
+                    <strong>
+                        Mata Kuliah
+                    </strong>
+
+                    <span>
+                        Kelola mata kuliah
+                    </span>
+
+                </button>
+
+
+                <button class="quick-card">
+
+                    <div>📅</div>
+
+                    <strong>
+                        Jadwal
+                    </strong>
+
+                    <span>
+                        Atur jadwal kuliah
+                    </span>
+
+                </button>
+
+
+                <button class="quick-card">
+
+                    <div>📝</div>
+
+                    <strong>
+                        Tugas
+                    </strong>
+
+                    <span>
+                        Pantau deadline
+                    </span>
+
+                </button>
+
+
+                <button class="quick-card">
+
+                    <div>🎯</div>
+
+                    <strong>
+                        Target Akademik
+                    </strong>
+
+                    <span>
+                        Pantau target IP
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACADEMIC GOAL -->
+
+        <section class="goal-card">
+
+            <div class="goal-content">
+
+                <span>
+                    TARGET AKADEMIK
+                </span>
+
+                <h2>
+                    Target IP Semester
+                </h2>
+
+                <p>
+                    Tetapkan target akademik dan pantau
+                    perkembanganmu sepanjang semester.
+                </p>
+
+            </div>
+
+
+            <div class="goal-value">
+
+                <span>
+                    Target
+                </span>
+
+                <strong id="goalIP">
+                    4.00
+                </strong>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <strong>
+            STB StudyMate
+        </strong>
+
+        <span>
+            Personal College Assistant
+        </span>
+
+    </footer>
+
+
+
+<script>
+
+    // ==========================================
+    // SUPABASE
+    // ==========================================
+
+    const SUPABASE_URL =
+        "MASUKKAN_PROJECT_URL_DISINI";
+
+    const SUPABASE_KEY =
+        "MASUKKAN_PUBLISHABLE_KEY_DISINI";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    // ==========================================
+    // LOAD DASHBOARD
+    // ==========================================
+
+    async function loadDashboard() {
+
+        const {
+            data: {
+                session
+            }
+        } = await supabaseClient.auth.getSession();
+
+
+        // Jika belum login
+        if (!session) {
+
+            window.location.href = "login.html";
+
+            return;
+        }
+
+
+        const userId =
+            session.user.id;
+
+
+        // Ambil profile
+
+        const {
+            data: profile,
+            error: profileError
+        } = await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id", userId)
+            .maybeSingle();
+
+
+        if (profileError) {
+
+            console.error(
+                "Profile error:",
+                profileError
+            );
+
+        }
+
+
+        if (profile) {
+
+            const name =
+                profile.full_name || "Mahasiswa";
+
+
+            document.getElementById(
+                "userName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "welcomeName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "userStudy"
+            ).textContent =
+                profile.study_program ||
+                "Teknik Informatika";
+
+
+            document.getElementById(
+                "semesterValue"
+            ).textContent =
+                profile.current_semester || 1;
+
+
+            const target =
+                Number(
+                    profile.target_ip || 4
+                ).toFixed(2);
+
+
+            document.getElementById(
+                "targetIP"
+            ).textContent = target;
+
+
+            document.getElementById(
+                "goalIP"
+            ).textContent = target;
+
+        }
+
+
+        // Ambil jumlah mata kuliah
+
+        const {
+            count: courseCount,
+            error: courseError
+        } = await supabaseClient
+            .from("courses")
+            .select("*", {
+                count: "exact",
+                head: true
+            })
+            .eq("user_id", userId);
+
+
+        if (!courseError) {
+
+            document.getElementById(
+                "courseCount"
+            ).textContent =
+                courseCount || 0;
+
+        }
+
+
+        // Ambil jumlah tugas belum selesai
+
+        const {
+            count: assignmentCount,
+            error: assignmentError
+        } = await supabaseClient
+            .from("assignments")
+            .select("*", {
+                count: "exact",
+                head: true
+            })
+            .eq("user_id", userId)
+            .neq("status", "completed");
+
+
+        if (!assignmentError) {
+
+            document.getElementById(
+                "assignmentCount"
+            ).textContent =
+                assignmentCount || 0;
+
+        }
+
+    }
+
+
+    // ==========================================
+    // LOGOUT
+    // ==========================================
+
+    document
+        .getElementById("logoutButton")
+        .addEventListener(
+            "click",
+            async function() {
+
+                await supabaseClient.auth.signOut();
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+    // Jalankan dashboard
+
+    loadDashboard();
+
+</script>
+
+</body>
+</html>
