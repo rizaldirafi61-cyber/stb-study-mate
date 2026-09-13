@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STB StudyMate</title>
+
+    <meta name="description" content="Asisten perkuliahan pribadi mahasiswa STIKOM Tunas Bangsa">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <span>STB</span>
+            StudyMate
+        </div>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#matakuliah">Mata Kuliah</a>
+            <a href="#jadwal">Jadwal</a>
+            <a href="#tugas">Tugas</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="welcome">SELAMAT DATANG DI STB STUDYMATE</p>
+
+                <h1>
+                    Teman Kuliahmu untuk
+                    <span>Meraih Prestasi</span>
+                </h1>
+
+                <p class="hero-description">
+                    Web pendamping perkuliahan untuk membantu mengatur
+                    jadwal, tugas, belajar, nilai, dan target akademik.
+                </p>
+
+                <a href="#dashboard" class="btn-primary">
+                    Mulai Sekarang
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section">
+
+            <div class="section-title">
+                <p>MY DASHBOARD</p>
+                <h2>Selamat datang kembali 👋</h2>
+                <span>
+                    Berikut ringkasan aktivitas perkuliahan kamu hari ini.
+                </span>
+            </div>
+
+
+            <div class="profile-card">
+
+                <div>
+                    <h3>Mahasiswa Teknik Informatika</h3>
+                    <p>STIKOM Tunas Bangsa Pematangsiantar</p>
+                </div>
+
+                <div class="semester">
+                    Semester <strong>1</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <p>Mata Kuliah</p>
+                    <h3>0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <p>Tugas Belum Selesai</p>
+                    <h3>0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <p>Kuliah Hari Ini</p>
+                    <h3>0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <p>Target IP</p>
+                    <h3>4.00</h3>
+                </div>
+
+            </div>
+
+
+            <!-- PRIORITAS -->
+            <div class="priority-section">
+
+                <div class="priority-header">
+                    <div>
+                        <p>REKOMENDASI</p>
+                        <h2>Apa yang harus saya lakukan?</h2>
+                    </div>
+                </div>
+
+
+                <div class="priority-list">
+
+                    <div class="priority-item">
+                        <div class="priority-number">1</div>
+
+                        <div>
+                            <h3>Belum ada aktivitas</h3>
+                            <p>
+                                Tambahkan mata kuliah dan tugas untuk
+                                mendapatkan rekomendasi kegiatan.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="priority-item">
+                        <div class="priority-number">2</div>
+
+                        <div>
+                            <h3>Atur jadwal kuliah</h3>
+                            <p>
+                                Masukkan jadwal kuliah agar kamu tidak
+                                melewatkan perkuliahan.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="priority-item">
+                        <div class="priority-number">3</div>
+
+                        <div>
+                            <h3>Tentukan target akademik</h3>
+                            <p>
+                                Tentukan target IP semester agar perkembangan
+                                akademik dapat dipantau.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MATA KULIAH -->
+        <section id="matakuliah" class="section light-section">
+
+            <div class="section-title">
+                <p>ACADEMIC</p>
+                <h2>Mata Kuliah</h2>
+                <span>
+                    Kelola mata kuliah yang sedang kamu jalani.
+                </span>
+            </div>
+
+            <div class="empty-card">
+                <div class="empty-icon">📚</div>
+
+                <h3>Belum ada mata kuliah</h3>
+
+                <p>
+                    Mata kuliah akan ditampilkan di sini.
+                </p>
+
+                <button class="btn-secondary">
+                    + Tambah Mata Kuliah
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- JADWAL -->
+        <section id="jadwal" class="section">
+
+            <div class="section-title">
+                <p>SCHEDULE</p>
+                <h2>Jadwal Kuliah</h2>
+                <span>
+                    Lihat jadwal perkuliahan kamu.
+                </span>
+            </div>
+
+            <div class="empty-card">
+
+                <div class="empty-icon">📅</div>
+
+                <h3>Belum ada jadwal</h3>
+
+                <p>
+                    Tambahkan jadwal kuliah untuk melihat agenda mingguan.
+                </p>
+
+                <button class="btn-secondary">
+                    + Tambah Jadwal
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- TUGAS -->
+        <section id="tugas" class="section light-section">
+
+            <div class="section-title">
+                <p>ASSIGNMENTS</p>
+                <h2>Tugas & Deadline</h2>
+                <span>
+                    Pantau semua tugas agar tidak terlambat.
+                </span>
+            </div>
+
+            <div class="empty-card">
+
+                <div class="empty-icon">📝</div>
+
+                <h3>Belum ada tugas</h3>
+
+                <p>
+                    Semua tugas yang kamu masukkan akan muncul di sini.
+                </p>
+
+                <button class="btn-secondary">
+                    + Tambah Tugas
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            STB StudyMate
+        </div>
+
+        <p>
+            Personal College Assistant
+        </p>
+
+        <p class="copyright">
+            © 2026 STB StudyMate
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
